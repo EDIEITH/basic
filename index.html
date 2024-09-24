@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            height: 200px;
+            width: 200px;
+            border: 2px solid black;
+            border-radius: 10px;
+            margin: 10px;
+            float: left;
+        }
+        img{
+            border-radius: 10px;
+        }
+        .hover{border: 1px dotted red;}
+    </style>
+</head>
+<body>
+    <div class="box" draggable="true">
+        <img src="../array/img1.jpeg" alt="" height="200" width="200">
+    </div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+
+    <script>
+        window.onload=()=>{
+            var boxes=document.querySelectorAll(".box");
+            var img = document.querySelector("img");
+            console.log(boxes)
+            boxes.forEach((bx)=>{
+                console.log(bx)
+                bx.addEventListener("dragover",(e)=>{
+                    e.preventDefault();
+                    bx.classList.add("hover");
+                });
+                bx.addEventListener("dragleave",(e)=>{
+                    e.preventDefault();
+                    bx.classList.remove("hover");
+                })
+                bx.addEventListener("drop",(e)=>{
+                    bx.appendChild(img);
+                })
+            })
+        }
+    </script>
+</body>
+</html>
